@@ -18,6 +18,11 @@ enum Role {
   ADMIN
 }
 
+enum ShopperStatus {
+  Pending 
+  Active
+}
+
 model User {
   id          String @id @default(cuid())
   name        String 
@@ -50,7 +55,7 @@ model Shopper  {
   regionId    String 
   region      Region @relation(fields: [regionId], references: [id])
   rating      Int?
-  status      String 
+  status      ShopperStatus @default(Pending)
 
   @@unique([email])
   @@index([id, email, status])
