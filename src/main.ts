@@ -13,7 +13,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('auth')
     .addTag('users')
-    .addTag('products') // ← add your own tags
+    .addTag('products') 
     // Important: this enables the "Authorize" button for JWT
     .addBearerAuth(
       {
