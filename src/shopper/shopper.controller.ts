@@ -10,4 +10,9 @@ export class ShopperController {
     async createShopper(@Body() body: CreateShopper){
         return this.shopperService.createShopper(body)
     }
+
+    @Get()
+    async getShopper(){
+        
+    }
 } 
