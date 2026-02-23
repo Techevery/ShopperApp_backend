@@ -14,8 +14,8 @@ export class ShopperService {
       });
       if (shopper) throw new UnauthorizedException('Accoun already exist!');
       const data = await this.prisma.shopper.create({
-        data: { name, email, regionId },
-      });
+        data: { name, email, regionId }, 
+      }); 
       return data
     } catch (error) {
         throw new HttpException(`${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR)
