@@ -7,39 +7,14 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
 
-  const config = new DocumentBuilder()
-    .setTitle('Your API Title')
-    .setDescription('API description goes here')
+    const config = new DocumentBuilder()
+    .setTitle('Quick mall')  // e.g., 'User Profile API'
+    .setDescription('Api for quick mall store')
     .setVersion('1.0')
-    .addTag('auth')
-    .addTag('users')
-    .addTag('products') 
-    // Important: this enables the "Authorize" button for JWT
-    .addBearerAuth(
-      {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-        name: 'JWT',
-        description: 'Enter JWT token (without Bearer prefix)',
-        in: 'header',
-      },
-      'access-token', // ← this is the security scheme name you'll reference later
-    )
+    .addBearerAuth()  // For JWT auth endpoints
     .build();
-
   const document = SwaggerModule.createDocument(app, config);
-
-  SwaggerModule.setup('api', app, document, {
-    // Nice defaults — optional but recommended
-    swaggerOptions: {
-      persistAuthorization: true,     // keeps token after refresh
-      tagsSorter: 'alpha',
-      operationsSorter: 'alpha',
-      docExpansion: 'none',
-    },
-    customCss: '.swagger-ui .topbar { display: none }', // optional: hide top bar
-  });
+  SwaggerModule.setup('api-docs', app, document); 
 
   app.setGlobalPrefix("api")
 
